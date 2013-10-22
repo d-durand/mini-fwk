@@ -11,13 +11,11 @@ $(function(){
 </code>
 
 <p>
-Peu importe ce que vous tapez, le script serveur renvoie [un,deux,trois]...
+Tapez un nombre en lettres [un,deux,trois...]
 </p>
 <p>
 Formulaire:  
 </p>
-<script src='js/jquery-1.4.3.min.js'></script>
-<script src='js/jquery-ui-1.8.5.custom.min.js'></script>
 <script>
 {literal}
 $(function(){

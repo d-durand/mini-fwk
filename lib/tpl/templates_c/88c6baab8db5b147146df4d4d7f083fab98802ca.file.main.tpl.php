@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2012-11-27 09:55:05
+<?php /* Smarty version Smarty-3.1.1, created on 2013-10-22 19:29:47
          compiled from "templates/main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:179219845350b47fe94d6c94-45604315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88c6baab8db5b147146df4d4d7f083fab98802ca' => 
     array (
       0 => 'templates/main.tpl',
-      1 => 1354006215,
+      1 => 1382462985,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.1',
+  'unifunc' => 'content_50b47fe954f1c',
   'variables' => 
   array (
     'titre' => 0,
@@ -30,17 +32,17 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'erreurs' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.1',
-  'unifunc' => 'content_50b47fe954f1c',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_50b47fe954f1c')) {function content_50b47fe954f1c($_smarty_tpl) {?><!-- start template-->
 <html>
 	<head>
 	<title><?php echo $_smarty_tpl->tpl_vars['titre']->value;?>
 </title>
+	<script src='js/jquery-1.10.2.min.js'></script>
+	<script src='js/jquery-ui-1.10.3.custom.min.js'></script>
 	
 	<link rel='stylesheet' href='styles/defaut.css' />
-	<link rel='stylesheet' href='styles/smoothness/jquery-ui-1.8.5.custom.css' />
+	<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
 
 	</head>
 	<body>

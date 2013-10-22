@@ -2,9 +2,11 @@
 <html>
 	<head>
 	<title>{$titre}</title>
+	<script src='js/jquery-1.10.2.min.js'></script>
+	<script src='js/jquery-ui-1.10.3.custom.min.js'></script>
 	
 	<link rel='stylesheet' href='styles/defaut.css' />
-	<link rel='stylesheet' href='styles/smoothness/jquery-ui-1.8.5.custom.css' />
+	<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
 
 	</head>
 	<body>

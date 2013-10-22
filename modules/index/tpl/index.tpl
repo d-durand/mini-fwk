@@ -1,13 +1,8 @@
-<script src='js/jquery-1.4.3.min.js'></script>
-<script src='js/jquery-ui-1.8.5.custom.min.js'></script>
 <script>
 $(function(){
 {literal}	
-$("a[href=?module=Redirect]").click(function(){
+$("a[href='?module=Redirect']").click(function(){
 $('h2').prepend("<p id='load' style=';height:40pt;border:3px gray solid;border-radius:10px;text-align:center'>Patientez quelques secondes</p>");
-
-
-
 	})	
 {/literal}	
 })
