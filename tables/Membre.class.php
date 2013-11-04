@@ -13,35 +13,19 @@ CREATE TABLE `Membres` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
 */
 
-class Membre extends Table{
-	
-	
+
+
+//exemple de classe en relation avec la table
+class Membre{
+		
 		public $id;
 		public $mail;
 		public $nom;
 		public $prenom;
 		public $login;
-		//etc.
-
+		public $pass;
 		
-		public static function chercherParLogin($login){
-			$sql="SELECT * from Membre WHERE Login=?";
-			$res=DB::get_instance()->prepare($sql);
-			$res->execute(array($login));
-			//gérer les erreurs éventuelles
-			if($res->rowCount()==0){
-				echo "pas de ligne";
-				return false;
-				
-			}
-			$m= $res->fetch();			
-			return new Membre($m[1],$m[2],$m[3],$m[4],$m[5],$m[0]);						
-		}
-		
-		public function liste(){}   		
-		public function listerParStatut(){}
-		public function desactiver(){}
-		public function activer(){}
+		//éventuellement setters et getters
 }
 
 ?>

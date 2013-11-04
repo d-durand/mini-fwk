@@ -12,7 +12,7 @@ class Connexion extends Module{
 		
 		//code de demo
 		$m=new Membre();
-		$m->remplir(array("login"=>$this->req->Login));
+		$m->login = $this->req->Login;
 		$this->session->user=$m;		
 		$this->tpl->assign('login',$m->login);
 		$this->site->ajouter_message("Vous êtes connecté en tant que ".$m->login);
@@ -20,7 +20,7 @@ class Connexion extends Module{
 	}
 
 	public function action_deconnect(){		
-		$this->site->ajouter_message('Vous étes déconnecté');							
+		$this->site->ajouter_message('Vous êtes déconnecté');							
 		$this->session->fermer(); 			
 		$this->site->redirect("index");
 	}
