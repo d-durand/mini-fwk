@@ -2,7 +2,7 @@
 //exemple de table Membre
 /*
 //structure SQL : 
-CREATE TABLE `Membres` (
+CREATE TABLE `Membre` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `login` varchar(30) NOT NULL,
   `nom` varchar(30) NOT NULL,
@@ -26,6 +26,8 @@ class Membre{
 		public $pass;
 		
 		//éventuellement setters et getters
+		
+		
 }
 
 ?>
