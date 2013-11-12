@@ -48,6 +48,32 @@ class MembreManager{
 			$membre->pass=$m[5];											
 			return $membre;
 		}
+
+
+
+		public  function chercherParLogin($login){
+			$sql="SELECT * from Membre WHERE login=?";
+			$res=DB::get_instance()->prepare($sql);
+			$res->execute(array($login));
+			//gérer les erreurs éventuelles
+			if($res->rowCount()==0){
+				return false;
+			}
+			$m= $res->fetch();			
+			$membre=new Membre();
+			$membre->id=$m[0];
+			$membre->login=$m[1];
+			$membre->nom= $m[2];
+			$membre->prenom=$m[3];
+			$membre->mail=$m[4];
+			$membre->pass=$m[5];											
+			return $membre;
+		}
+		
+
+
+
+
 		
 		
 		//autres exemples de fonctions possibles

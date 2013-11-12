@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-10-22 19:39:37
+<?php /* Smarty version Smarty-3.1.1, created on 2013-11-12 17:48:33
          compiled from "modules/Ajax/tpl/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:70780847950caf672039fb9-99613751%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'f5409d79e221d1231422f2cbcb7268593c19873f' => 
     array (
       0 => 'modules/Ajax/tpl/index.tpl',
-      1 => 1382463575,
+      1 => 1382463881,
       2 => 'file',
     ),
   ),
@@ -32,7 +32,7 @@ $(function(){
 </code>
 
 <p>
-Peu importe ce que vous tapez, le script serveur renvoie [un,deux,trois]...
+Tapez un nombre en lettres [un,deux,trois...]
 </p>
 <p>
 Formulaire:  

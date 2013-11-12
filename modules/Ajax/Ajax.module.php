@@ -14,7 +14,7 @@ class Ajax extends Module{
 	
 	
 		$item = $this->req->term;
-		error_log("item : ".$item);
+		//error_log("item : ".$item);
 		echo json_encode( preg_grep("/^$item/i",$nombres) );
 		exit;
 	}

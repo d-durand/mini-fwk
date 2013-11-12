@@ -32,6 +32,8 @@ class Formulaire extends Module{
 
 	public function action_valide(){
 
+		$mb = new MembreManager();
+
 		$this->set_title("Inscription");
 		$err=false;
 		//on récupère la structure du formulaire précédemment stocké dans la session
@@ -51,8 +53,9 @@ class Formulaire extends Module{
 		}
 
 
-		//Appel à la BD via objet Membre
-		elseif( Membre::chercherParLogin( $this->req->log) !== false){
+		//Appel à la BD via objet MembreManager
+		
+		elseif( $mb->chercherParLogin( $this->req->log) !== false){
 			$this->site->ajouter_message('contrôle form : login existant',ALERTE);	
 			$form->log->set_error(true);
 			$form->log->set_error_message("login existant !");			
@@ -69,17 +72,12 @@ class Formulaire extends Module{
 		//tous les tests ont été validés
 		else{
 			//création d'une instance de Membre
-			$m=new Membre();
-			//remplir avec les valeurs du formulaire
-			$m->remplir(array(
-						'login'=>$this->req->log,
-						'nom'=>$this->req->nom,
-						'prenom'=>$this->req->pnom,
-						'mail'=>$this->req->mail,
-						'passe'=>$this->req->pass1)
+			$m=new Membre($this->req->log,$this->req->nom,$this->req->pnom,
+						$this->req->mail,
+						$this->req->pass1
 						);
 			//enregistrement (insertion) dans la base
-			$m->enregistrer();
+			$mb->creer($m);
 			//passe un message pour la page suivante
 			$this->site->ajouter_message('L\'utilisateur est enregistré');			
 			//redirige vers le module par défaut
