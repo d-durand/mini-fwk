@@ -25,6 +25,17 @@ class Membre{
 		public $login;
 		public $pass;
 		
+		public function __construct($login, $nom, $prenom, $mail, $pass, $id=NULL){
+			$this->id = $id;			
+			$this->login=$login;
+			$this->nom= $nom;
+			$this->prenom=$prenom;
+			$this->mail=$mail;
+			$this->pass=$pass;
+			
+		}
+		
+		
 		//éventuellement setters et getters
 		
 		

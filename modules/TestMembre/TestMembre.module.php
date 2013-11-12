@@ -5,7 +5,7 @@ class TestMembre extends Module{
 
 	public function	action_index(){
 		
-		
+		//instancie le MembreManager pour effectuer des tests
 		$mb = new  MembreManager ();
 		
 		//création d'un membre fictif
@@ -26,6 +26,8 @@ class TestMembre extends Module{
 		$membre = $mb->chercherParId($resultat->id);
 		var_dump($membre);
 		
+		
+
 		
 		
 		

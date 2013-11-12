@@ -6,5 +6,6 @@ $menus['Redirect']="?module=Redirect";
 $menus['Download']="?module=DownloadFile";
 $menus['Ajax']="?module=Ajax";
 $menus['Doc']="Doc";
+$menus['Test']="?module=TestMembre";
 
 ?>
