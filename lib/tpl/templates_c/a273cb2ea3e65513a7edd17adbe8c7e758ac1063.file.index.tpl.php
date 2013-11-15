@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2012-12-14 10:50:39
+<?php /* Smarty version Smarty-3.1.1, created on 2013-11-15 10:21:58
          compiled from "modules/SimpleTemplate/tpl/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:84239681250caf66f6d70c3-48194048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a273cb2ea3e65513a7edd17adbe8c7e758ac1063' => 
     array (
       0 => 'modules/SimpleTemplate/tpl/index.tpl',
-      1 => 1353940501,
+      1 => 1384507306,
       2 => 'file',
     ),
   ),
@@ -15,6 +15,8 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   'function' => 
   array (
   ),
+  'version' => 'Smarty-3.1.1',
+  'unifunc' => 'content_50caf66f7fcd4',
   'variables' => 
   array (
     'chaine' => 0,
@@ -23,8 +25,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'donnees' => 0,
   ),
   'has_nocache_code' => false,
-  'version' => 'Smarty-3.1.1',
-  'unifunc' => 'content_50caf66f7fcd4',
 ),false); /*/%%SmartyHeaderCode%%*/?>
 <?php if ($_valid && !is_callable('content_50caf66f7fcd4')) {function content_50caf66f7fcd4($_smarty_tpl) {?><h2>Affichage des variables issues du module</h2>
 
@@ -56,7 +56,7 @@ $_smarty_tpl->tpl_vars['donnees']->_loop = true;
 		<?php }
 if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
 ?>	
-		tableau vide
+			<tr><td colspan='3'>tableau vide</td></tr>
 		<?php } ?>
 		</tbody>
 	</table><?php }} ?>

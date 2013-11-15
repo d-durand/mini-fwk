@@ -15,7 +15,7 @@
 		{foreach $table as $ligne=>$donnees}
 			<tr><td>{$donnees.N}</td><td> {$donnees.M}</td><td>{$donnees.O}</td></tr>
 		{foreachelse}	
-		tableau vide
+			<tr><td colspan='3'>tableau vide</td></tr>
 		{/foreach}
 		</tbody>
 	</table>
