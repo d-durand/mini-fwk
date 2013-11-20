@@ -3,10 +3,12 @@ class SimpleTemplate extends Module{
 
 	public function action_index(){
 
+		$this->set_title("Simple exemple TPL");
+
 		//création de variables PHP
 
 		$variable1 = "Bonjour";
-		
+				
 		$variable2 = date ("d/m/Y");
 		
 		$variable3 = array(/*
@@ -18,7 +20,6 @@ class SimpleTemplate extends Module{
 			*/
 			);
 			
-			echo "<table style=''>echo dans le code</table>";
 		
 		//passe les variables au template		
 		$this->tpl->assign('chaine',$variable1);

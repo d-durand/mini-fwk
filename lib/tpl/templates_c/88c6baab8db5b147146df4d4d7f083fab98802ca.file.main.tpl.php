@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-10-22 19:29:47
+<?php /* Smarty version Smarty-3.1.1, created on 2013-11-19 17:52:14
          compiled from "templates/main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:179219845350b47fe94d6c94-45604315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88c6baab8db5b147146df4d4d7f083fab98802ca' => 
     array (
       0 => 'templates/main.tpl',
-      1 => 1382462985,
+      1 => 1384879933,
       2 => 'file',
     ),
   ),
@@ -22,8 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'titre' => 0,
     'Bloc_Login' => 0,
     'menus' => 0,
-    'href' => 0,
+    'data' => 0,
     'm' => 0,
+    'shref' => 0,
+    'sm' => 0,
     'messages' => 0,
     'module' => 0,
     'action' => 0,
@@ -39,10 +41,12 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 	<title><?php echo $_smarty_tpl->tpl_vars['titre']->value;?>
 </title>
 	<script src='js/jquery-1.10.2.min.js'></script>
-	<script src='js/jquery-ui-1.10.3.custom.min.js'></script>
-	
+	<script src='js/jquery-ui-1.10.3.custom.min.js'></script>	
+	<script src='styles/bootstrap/js/bootstrap.min.js'></script>	
 	<link rel='stylesheet' href='styles/defaut.css' />
 	<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
+	<link rel='stylesheet' href='styles/bootstrap/css/bootstrap.min.css' />	
+
 
 	</head>
 	<body>
@@ -55,20 +59,50 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 		<div id='entete'>
 		<a href='?module=index'>Mini-FWK</a>
 		</div>
-	
-		<div id='menu'>
-			<a href='?' title='contenu'>Defaut</a> Exemples &rarr; 
-			<?php  $_smarty_tpl->tpl_vars['href'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['href']->_loop = false;
+				
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav">
+			<?php  $_smarty_tpl->tpl_vars['data'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['data']->_loop = false;
  $_smarty_tpl->tpl_vars['m'] = new Smarty_Variable;
  $_from = $_smarty_tpl->tpl_vars['menus']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
-foreach ($_from as $_smarty_tpl->tpl_vars['href']->key => $_smarty_tpl->tpl_vars['href']->value){
-$_smarty_tpl->tpl_vars['href']->_loop = true;
- $_smarty_tpl->tpl_vars['m']->value = $_smarty_tpl->tpl_vars['href']->key;
+foreach ($_from as $_smarty_tpl->tpl_vars['data']->key => $_smarty_tpl->tpl_vars['data']->value){
+$_smarty_tpl->tpl_vars['data']->_loop = true;
+ $_smarty_tpl->tpl_vars['m']->value = $_smarty_tpl->tpl_vars['data']->key;
 ?>
-			<a href='<?php echo $_smarty_tpl->tpl_vars['href']->value;?>
+				<?php if (is_array($_smarty_tpl->tpl_vars['data']->value)){?>
+				<li class="dropdown">				
+					<a href='#' class="dropdown-toggle" data-toggle="dropdown"><?php echo $_smarty_tpl->tpl_vars['m']->value;?>
+</a>
+						<ul class='dropdown-menu'>
+						<?php  $_smarty_tpl->tpl_vars['shref'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['shref']->_loop = false;
+ $_smarty_tpl->tpl_vars['sm'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['data']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['shref']->key => $_smarty_tpl->tpl_vars['shref']->value){
+$_smarty_tpl->tpl_vars['shref']->_loop = true;
+ $_smarty_tpl->tpl_vars['sm']->value = $_smarty_tpl->tpl_vars['shref']->key;
+?>	
+							<li>
+								<a href='<?php echo $_smarty_tpl->tpl_vars['shref']->value;?>
+'><?php echo $_smarty_tpl->tpl_vars['sm']->value;?>
+</a>
+							</li>
+						<?php } ?>
+						</ul>
+					
+				</li>
+				<?php }else{ ?>
+					<li>
+					<a id='A_<?php echo $_smarty_tpl->tpl_vars['m']->value;?>
+' href='<?php echo $_smarty_tpl->tpl_vars['data']->value;?>
 '><?php echo $_smarty_tpl->tpl_vars['m']->value;?>
 </a>
+					</li>
+				<?php }?>
 			<?php } ?>
+				</ul>
+			 </div>
+		
 		</div>
 	
 

@@ -3,10 +3,12 @@
 	<head>
 	<title>{$titre}</title>
 	<script src='js/jquery-1.10.2.min.js'></script>
-	<script src='js/jquery-ui-1.10.3.custom.min.js'></script>
-	
+	<script src='js/jquery-ui-1.10.3.custom.min.js'></script>	
+	<script src='styles/bootstrap/js/bootstrap.min.js'></script>	
 	<link rel='stylesheet' href='styles/defaut.css' />
 	<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
+	<link rel='stylesheet' href='styles/bootstrap/css/bootstrap.min.css' />	
+
 
 	</head>
 	<body>
@@ -18,12 +20,32 @@
 		<div id='entete'>
 		<a href='?module=index'>Mini-FWK</a>
 		</div>
-	
-		<div id='menu'>
-			<a href='?' title='contenu'>Defaut</a> Exemples &rarr; 
-			{foreach $menus as $m=>$href}
-			<a href='{$href}'>{$m}</a>
+				
+		<div class="navbar">
+			<div class="navbar-inner">
+				<ul class="nav">
+			{foreach $menus as $m=>$data}
+				{if is_array($data)}
+				<li class="dropdown">				
+					<a href='#' class="dropdown-toggle" data-toggle="dropdown">{$m}</a>
+						<ul class='dropdown-menu'>
+						{foreach $data as $sm=>$shref}	
+							<li>
+								<a href='{$shref}'>{$sm}</a>
+							</li>
+						{/foreach}
+						</ul>
+					
+				</li>
+				{else}
+					<li>
+					<a id='A_{$m}' href='{$data}'>{$m}</a>
+					</li>
+				{/if}
 			{/foreach}
+				</ul>
+			 </div>
+		
 		</div>
 	
 

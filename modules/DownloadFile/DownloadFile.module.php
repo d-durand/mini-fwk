@@ -49,7 +49,7 @@ FINTEXT;
 		// send the right headers
 		header("Content-Type: image/png");
 		header("Content-Length: " . filesize($name));
-		header('Content-Disposition: attachment; filename="exemple.png"');				
+		//header('Content-Disposition: attachment; filename="exemple.png"');				
 		// dump the picture and stop the script
 		fpassthru($fp);
 		exit;

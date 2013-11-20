@@ -49,7 +49,7 @@ class Formulaire extends Module{
 			$this->site->ajouter_message('contrôle form : remplir les champs (test sur le login dans cet exemple)',ALERTE);			
 			$err=true;
 			$form->log->set_error(true);
-			$form->log->set_error_message("champs vide !");
+			$form->log->set_error_message("champ vide !");
 		}
 
 
@@ -61,6 +61,9 @@ class Formulaire extends Module{
 			$form->log->set_error_message("login existant !");			
 			$err=true;	
 		 }
+		
+		//autres tests
+		//...
 		
 		//si un des tests a échoué
 		if($err){	
