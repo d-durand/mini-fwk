@@ -8,8 +8,6 @@
 	<link rel='stylesheet' href='styles/defaut.css' />
 	<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
 	<link rel='stylesheet' href='styles/bootstrap/css/bootstrap.min.css' />	
-
-
 	</head>
 	<body>
 	<div id='page'>

@@ -10,5 +10,4 @@ $menus['Exemples']=array(
 	);
 $menus['Doc']="Doc";
 $menus['Test']="?module=TestMembre";
-
 ?>
