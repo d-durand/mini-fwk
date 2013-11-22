@@ -26,7 +26,7 @@ class Request{
 	
 	
 	public function __get($name){
-		return isset ($_REQUEST[$name]) ? $_REQUEST[$name] : '' ;
+		return isset ($_REQUEST[$name]) ? trim($_REQUEST[$name]) : '' ;
 	}
 	
 }
