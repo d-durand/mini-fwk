@@ -134,9 +134,10 @@
 			
 		}
 		
-		#contenu option, #contenu input, #contenu select{
+		#contenu option, #contenu input, #contenu select,#contenu textarea{
 			color:#353730;
 			font-size:10pt;	
+			height: inherit;
 			margin:4pt;
 			padding:4pt;
 			border:1px #868A78 solid;
@@ -148,7 +149,7 @@
 		}
 
 		
-		#contenu input,#contenu select{
+		#contenu input,#contenu select,#contenu textarea{
 			float:left;
 		}
 

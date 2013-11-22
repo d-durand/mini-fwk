@@ -17,6 +17,7 @@ class Formulaire extends Module{
 		$f->add_radio("rad1","r1","Exemple Rad")->set_value("one");		
 		$f->add_radio("rad1","r2")->set_value("two");		
 		$f->add_radio("rad1","r3")->set_value("three");		
+		$f->add_textarea("texte","texte","Message");
 		$f->add_select("choix","choix","Exemple Liste",array("v1"=>"Un","v2"=>"Deux","v3"=>"Trois"))->set_value("Deux");		
 		$f->add_submit("Valider","bntval")->set_value('Valider');		
 
