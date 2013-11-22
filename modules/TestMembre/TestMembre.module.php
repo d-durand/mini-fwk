@@ -30,7 +30,8 @@ class TestMembre extends Module{
 
 		
 		$res = DB::get_instance()->query("select * from Membre");
-		$this->site->debug($res->fetch_all());
+		
+		echo ($this->site->debug($res->fetchAll(PDO::FETCH_COLUMN|PDO::FETCH_GROUP)));
 		
 		
 		

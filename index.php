@@ -122,7 +122,7 @@ function exc($exc){
 	global $err;
 	$err=true;
 	ob_end_flush();
-	$tpl->assign('message',$exc->getMessage());
+	$tpl->assign('message',$exc->getFile()." : ".$exc->getLine()."<br>".$exc->getMessage());
 	$tpl->display('erreur.tpl');
 }
 //--------------------------------------------------------------------------
