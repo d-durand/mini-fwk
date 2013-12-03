@@ -12,6 +12,7 @@ define ("RADIO","radio");
 define ("SELECT","select");					
 define ("SUBMIT","submit");					
 define ("HIDDEN","hidden");					
+define ("FILE","file");					
 
 class HTMLInput{
 		
@@ -26,6 +27,7 @@ class HTMLInput{
 	public $required=false;
 	public $error=false;
 	public $errormsg='';
+	public $rules='';
 		
 	public function __construct($type,$name='',$id='',$label='&nbsp;',$options=array()){
 		$this->type=$type;
@@ -44,11 +46,23 @@ class HTMLInput{
 		$this->value=htmlspecialchars($val,ENT_QUOTES);
 		return $this;
 	}
+	
+	public function set_options($options){
+		if($this->type==SELECT)
+			$this->options=options;
+		else
+			throw new Exception("set_options() est réservée aux champs SELECT");
+	}
 
 	public function set_required($val=true){
 		$this->required= $val ? 'required' : '';
 		return $this;
 	}
+	
+	public function set_rules($rules){
+		$this->rules= $rules;
+	}
+	
 	public function set_error($err=true){
 		$this->error= $err ? 'error' : '';
 		return $this;
@@ -81,6 +95,10 @@ class HTMLInput{
 			
 			case PASSWORD : 
 			return "$label<input $common type='password' value='{$this->value}' /> $msg" ;
+
+			case FILE : 
+			return "$label<input $common type='file' /> $msg" ;
+
 			
 			case CHECK : 
 			return "$label<input type='checkbox' "
@@ -94,7 +112,7 @@ class HTMLInput{
 					
 			case SELECT : $s="$label<select $common>";
 				foreach($this->options as $k=>$v)
-					$s.='<option value="'.$k.'" '.($k===$this->value || $v===$this->value ? "selected='selected'":'').">$v</option>";
+					$s.='<option value="'.$k.'" '.($k==$this->value || $v==$this->value ? "selected='selected'":'').">$v</option>";
 				$s.="</select> $msg";
 				return $s;
 					

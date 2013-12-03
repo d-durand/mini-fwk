@@ -13,6 +13,7 @@ class DB{
  
 		self::$Base=new PDO("mysql:host=".DB_HOST.";dbname=".BASE.";port=".PORT,DB_USER,DB_PASS);
 		self::$Base->setAttribute(PDO::ATTR_ERRMODE,PDO::ERRMODE_EXCEPTION); 
+		self::$Base->query("SET NAMES UTF8");
  
 	}
 	

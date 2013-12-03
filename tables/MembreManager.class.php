@@ -19,7 +19,7 @@ CREATE TABLE `Membres` (
 class MembreManager{
 	
 
-		public  function creer($m){
+		public static function creer($m){
 			
 			$sql = "INSERT INTO Membre VALUES ('',?, ?, ?, ?, ?)";
 			$res = DB::get_instance()->prepare($sql);
@@ -30,7 +30,7 @@ class MembreManager{
 		}
 
 
-		public  function chercherParID($id){
+		public static function chercherParID($id){
 			$sql="SELECT * from Membre WHERE id=?";
 			$res=DB::get_instance()->prepare($sql);
 			$res->execute(array($id));
@@ -51,7 +51,7 @@ class MembreManager{
 
 
 
-		public  function chercherParLogin($login){
+		public static function chercherParLogin($login){
 			$sql="SELECT * from Membre WHERE login=?";
 			$res=DB::get_instance()->prepare($sql);
 			$res->execute(array($login));
@@ -70,21 +70,16 @@ class MembreManager{
 			return $membre;
 		}
 		
-
-
-
-
-		
 		
 		//autres exemples de fonctions possibles
-		public function liste(){
+		public static function liste(){
 			
 		}   		
 
-		public function desactiver(){
+		public static function desactiver(){
 			
 		}
-		public function activer(){
+		public static function activer(){
 			
 		}
 }

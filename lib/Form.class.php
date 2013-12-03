@@ -9,12 +9,61 @@ class Form{
 	protected $fields;
 	protected $action='?';
 	protected $method='POST';
+	protected $hasFile=false;
 
-	
+
 	public function __construct($action,$id){
 		$this->id=$id;
 		$this->action=$action;
 	} 
+
+	public function set_action($action){
+		$this->action = $action;
+	}
+
+	function build_from_array($array){
+		
+		foreach($array as $f){
+		
+			switch($f['type']){
+				case 'text':
+					$s=$this->add_text($f['name'],$f['id'],$f['label']);
+				break;
+				case 'password':
+					$s=$this->add_password($f['name'],$f['id'],$f['label']);
+				break;
+				case 'checkbox':
+					$s=$this->add_checkbox($f['name'],$f['id'],$f['label']);			
+				break;
+				case 'radio':
+					$s=$this->add_radio($f['name'],$f['id'],$f['label']);							
+				break;
+				case 'textarea':
+					$s=$this->add_textarea($f['name'],$f['id'],$f['label']);							
+				break;
+				case 'hidden':
+					$s=$this->add_hidden($f['name'],$f['id'],$f['label']);
+				break;
+				case 'select':
+					$s=$this->add_select($f['name'],$f['id'],$f['label'],isset($f['options'])? $f['options'] : null );
+				break;
+				case 'submit':
+					$s=$this->add_submit($f['name'],$f['id'],$f['label']);							
+				break;
+				
+			}
+			
+			if(isset($f['checked']))
+				$s->check();
+			if(isset($f['required']))
+				$s->set_required($f['required']);
+			if(isset($f['value']))
+				$s->set_required($f['value']);				
+			if(isset($f['rules']))
+				$s->set_rules($f['rules']);						
+		}		
+	}
+
 
 	function add_select($name,$id,$label='&nbsp;',$options=array()){
 		$s =  new HTMLInput(SELECT,$name,$id,$label,$options);
@@ -33,6 +82,15 @@ class Form{
 		$this->fields[][$name]=$s;
 		return $s;		
 	}
+
+
+	function add_file($name,$id,$label='&nbsp;'){
+		$s =  new HTMLInput(FILE,$name,$id,$label);
+		$this->fields[][$name]=$s;
+		$this->hasFile=true;
+		return $s;		
+	}
+
 
 
 	function add_textarea($name,$id,$label='&nbsp;'){
@@ -88,7 +146,6 @@ class Form{
 	}
 
 
-
 	//remplissage des champs avec les valeurs issues de _REQUEST ou du tableau passé en paramètre
 	function populate($tab=NULL){
 		if(!$tab) $tab=$_REQUEST;
@@ -116,10 +173,37 @@ class Form{
 	}
 
 
+
+/*
+	protected rules_=array(
+			'min',
+			'max',
+			'min-length',
+			'max-length',
+			'int',
+			'mail',
+			'date',
+			'regex',
+			'required'
+		);
+
+	public function valid(){
+		$err=false;
+		foreach($this->fields as $k=>$f){
+		
+			if($f->rules != ''){
+				$tab=explode('|',$f->rules);
+			}		
+		}
+	}
+*/
+
+
+
 	//génération HTML du formulaire
 	function __toString(){
 		
-		$s="<form method='{$this->method}' action='{$this->action}'>";
+		$s="<form method='{$this->method}' action='{$this->action}'" . ($this->hasFile ? " enctype='multipart/form-data'":'').">";
 		foreach($this->fields as $k=>$f){
 			$s=$s.array_pop($f);
 		}

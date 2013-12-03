@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-11-15 14:41:05
+<?php /* Smarty version Smarty-3.1.1, created on 2013-11-26 11:48:04
          compiled from "modules/SimpleTemplate/tpl/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:84239681250caf66f6d70c3-48194048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a273cb2ea3e65513a7edd17adbe8c7e758ac1063' => 
     array (
       0 => 'modules/SimpleTemplate/tpl/index.tpl',
-      1 => 1384522861,
+      1 => 1385462884,
       2 => 'file',
     ),
   ),
@@ -38,7 +38,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <h3>variable3, tableau associatif</h3>
 	<table id='modtpl_table'>
 		<thead>
-			<th>Col1</th><th>Col2</th><th>Col3</th>
+			<th>Col1</th><th>Col2</th><th>Col3</th><th>Actions</th>
 		</thead>
 		<tbody>
 		<?php  $_smarty_tpl->tpl_vars['donnees'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['donnees']->_loop = false;
@@ -51,7 +51,8 @@ $_smarty_tpl->tpl_vars['donnees']->_loop = true;
 			<tr><td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['M'];?>
 </td><td> <?php echo $_smarty_tpl->tpl_vars['donnees']->value['N'];?>
 </td><td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['O'];?>
-</td></tr>
+</td><td><a href='modifier_<?php echo $_smarty_tpl->tpl_vars['donnees']->value['O'];?>
+'>X</a></td></tr>
 		<?php }
 if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
 ?>	
