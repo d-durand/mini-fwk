@@ -86,27 +86,27 @@ class Site{
 	 
 		switch($type){
 			case INFO: 
-				$class='info';
+				$class='alert-info';
 			break;
 			case ERREUR: 
-				$class='erreur';
+				$class='alert-danger';
 				$message="<b>$message</b><pre>\n".self::trace(debug_backtrace())."</pre>";
 			break;
 			case OK: 
-				$class='ok';
+				$class='alert-success';
 			break;
 			case ALERTE: 
-				$class='alerte';
+				$class='alert-danger';
 			break;
 			default:
-				$class='info';
+				$class='alert-info';
 		}
 	 
 		return <<< ENDOFMESSAGE
 	 
-			<div class='$class'>
-				<span></span>
-				<span>$message</span>
+			<div class='$class alert alert-dismissable'>
+				<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+				$message
 			</div>
 		 
 ENDOFMESSAGE;

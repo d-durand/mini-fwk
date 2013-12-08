@@ -21,13 +21,13 @@ class HTMLInput{
 	public $id;
 	public $label;
 	public $type;
-	public $options;
+	public $options;//pour liste select ou groupe de boutons radio
 	public $checked=false;
 	public $selected="";
 	public $required=false;
 	public $error=false;
 	public $errormsg='';
-	public $rules='';
+	public $validation='';
 		
 	public function __construct($type,$name='',$id='',$label='&nbsp;',$options=array()){
 		$this->type=$type;
@@ -48,10 +48,10 @@ class HTMLInput{
 	}
 	
 	public function set_options($options){
-		if($this->type==SELECT)
+		if($this->type==SELECT||$this->type==RADIO)
 			$this->options=options;
 		else
-			throw new Exception("set_options() est réservée aux champs SELECT");
+			throw new Exception("set_options() est réservée aux champs SELECT/RADIO");
 	}
 
 	public function set_required($val=true){
@@ -59,12 +59,12 @@ class HTMLInput{
 		return $this;
 	}
 	
-	public function set_rules($rules){
-		$this->rules= $rules;
+	public function set_validation($validation){
+		$this->validation= $validation;
 	}
 	
 	public function set_error($err=true){
-		$this->error= $err ? 'error' : '';
+		$this->error = $err ? 'has-error' : '';
 		return $this;
 	}
 
@@ -77,55 +77,71 @@ class HTMLInput{
 
 	function __toString(){
 
-		$classes = "class='{$this->error} {$this->required}'";
-		$label="<label $classes for='{$this->id}'>{$this->label}</label>";
-		$common = "id='{$this->id}' name='{$this->name}' $classes"; 
-		$msg=$this->errormsg?"<span>{$this->errormsg}</span>":"";
+		try{
+
+
+		$s="";
+		
+		global $tpl;		
+		$tpl->assign("f_id",$this->id);
+		$tpl->assign("f_name",$this->name);
+		$tpl->assign("f_required",$this->required);
+		$tpl->assign("f_error",$this->error);
+		$tpl->assign("f_value",$this->value);
+		$tpl->assign("f_label",$this->label);
+		$tpl->assign("f_checked",$this->checked?"checked='checked'":'');
+		if($this->errormsg)
+			$tpl->assign("f_msg",$this->errormsg);
+		else
+			$tpl->assign("f_msg",NULL);
 		
 		switch($this->type){
 			case TEXT : 
-			return "$label<input $common type='text' value='{$this->value}' /> $msg" ;		
+				//$s="<input $common $class_control type='text' value='{$this->value}'>" ;		
+					$s=$tpl->fetch("file:templates/champs/text.tpl");
+			break;
 
 			case HIDDEN : 
-			return "<input $common type='hidden' value='{$this->value}' /> $msg" ;		
+					$s=$tpl->fetch("file:templates/champs/hidden.tpl");
+			break;
 
-			
 			case TEXTAREA :
-			return "$label<textarea $common>{$this->value}</textarea> $msg" ;
-			
+					$s=$tpl->fetch("file:templates/champs/textarea.tpl");
+			break;
+
 			case PASSWORD : 
-			return "$label<input $common type='password' value='{$this->value}' /> $msg" ;
+					$s=$tpl->fetch("file:templates/champs/password.tpl");
+			break;
 
 			case FILE : 
-			return "$label<input $common type='file' /> $msg" ;
-
+					$s=$tpl->fetch("file:templates/champs/file.tpl");
+			break;
 			
 			case CHECK : 
-			return "$label<input type='checkbox' "
-					.($this->checked?"checked='checked'":'')
-					." value='{$this->value}' $common' /> $msg" ; 
-					
-			case RADIO : return "$label<input type='radio' "
-					.($this->checked?"checked='checked'":'')
-					." value='{$this->value}' $common' />"
-					."<span>{$this->value}</span>$msg" ; 
-					
-			case SELECT : $s="$label<select $common>";
-				foreach($this->options as $k=>$v)
-					$s.='<option value="'.$k.'" '.($k==$this->value || $v==$this->value ? "selected='selected'":'').">$v</option>";
-				$s.="</select> $msg";
-				return $s;
-					
-			
+					$s=$tpl->fetch("file:templates/champs/checkbox.tpl");
 			break;
+
+			case RADIO : 
+					$tpl->assign("f_options",$this->options);
+					$s=$tpl->fetch("file:templates/champs/radio.tpl");
+			break;
+
+			case SELECT : 
+				$tpl->assign("f_options",$this->options);
+				$s=$tpl->fetch("file:templates/champs/select.tpl");
+			break;
+
 			case SUBMIT : 
-			return "$label<input type='submit' value='{$this->value}' $common />" ; 
-			
+				$s=$tpl->fetch("file:templates/champs/submit.tpl");
+			break;
+
 			default: return "[CHAMP INCONNU]";			
 			
-			
 		}
-		return "[CHAMP INCONNU]";
+		
+		return $s;
+		}catch(Exception $e){return "Exception dans le template de {$this->name}";}
+		
 	}
 }
 ?>

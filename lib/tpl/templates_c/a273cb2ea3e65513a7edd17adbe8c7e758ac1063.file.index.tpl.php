@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-11-26 11:48:04
+<?php /* Smarty version Smarty-3.1.1, created on 2013-12-06 23:55:45
          compiled from "modules/SimpleTemplate/tpl/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:84239681250caf66f6d70c3-48194048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a273cb2ea3e65513a7edd17adbe8c7e758ac1063' => 
     array (
       0 => 'modules/SimpleTemplate/tpl/index.tpl',
-      1 => 1385462884,
+      1 => 1386370542,
       2 => 'file',
     ),
   ),
@@ -26,7 +26,35 @@ $_valid = $_smarty_tpl->decodeProperties(array (
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
-<?php if ($_valid && !is_callable('content_50caf66f7fcd4')) {function content_50caf66f7fcd4($_smarty_tpl) {?><h2>Affichage des variables issues du module</h2>
+<?php if ($_valid && !is_callable('content_50caf66f7fcd4')) {function content_50caf66f7fcd4($_smarty_tpl) {?>
+<script>
+//demande confirmation sur click d'un bouton supprimer
+$(function() {
+	$('a.glyphicon-remove').click(function(ev){
+		var a = $(this);
+		$( "<div>Effacer " + a.attr('title') + "</div>" ).dialog({
+			resizable: false,
+			modal: true,
+			title:'Confirmation',
+			position: "center",//{ my: "top", at: " top", of: "window" },
+			buttons: {
+				Effacer: function() {
+					window.location=a.attr('href')
+					$( this ).dialog( "close" );
+				},
+				Cancel: function() {
+					
+					$( this ).dialog( "close" );
+				}
+			}
+			});
+		ev.preventDefault();				
+	})
+});
+</script>
+
+
+<h2>Affichage des variables issues du module</h2>
 
 <h3>variable1, type chaine</h3>
 <p><?php echo $_smarty_tpl->tpl_vars['chaine']->value;?>
@@ -36,9 +64,9 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <p><?php echo $_smarty_tpl->tpl_vars['date']->value;?>
 </p>
 <h3>variable3, tableau associatif</h3>
-	<table id='modtpl_table'>
+	<table class='table table-striped'>
 		<thead>
-			<th>Col1</th><th>Col2</th><th>Col3</th><th>Actions</th>
+			<th>id</th><th>Reference</th><th>Prix</th><th>Actions</th>
 		</thead>
 		<tbody>
 		<?php  $_smarty_tpl->tpl_vars['donnees'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['donnees']->_loop = false;
@@ -48,11 +76,24 @@ foreach ($_from as $_smarty_tpl->tpl_vars['donnees']->key => $_smarty_tpl->tpl_v
 $_smarty_tpl->tpl_vars['donnees']->_loop = true;
  $_smarty_tpl->tpl_vars['ligne']->value = $_smarty_tpl->tpl_vars['donnees']->key;
 ?>
-			<tr><td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['M'];?>
-</td><td> <?php echo $_smarty_tpl->tpl_vars['donnees']->value['N'];?>
-</td><td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['O'];?>
-</td><td><a href='modifier_<?php echo $_smarty_tpl->tpl_vars['donnees']->value['O'];?>
-'>X</a></td></tr>
+			<tr class='table-striped'>
+				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['id'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Reference'];?>
+</td>
+				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Prix'];?>
+</td>
+				<td>
+
+					<a class='glyphicon glyphicon-pencil' href='?module=SimpleTemplate&action=modifier&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['id'];?>
+&ref=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['Reference'];?>
+'></a> 
+					<a class='glyphicon glyphicon-remove' title=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['Reference'];?>
+ href='?module=SimpleTemplate&action=supprimer&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['id'];?>
+'></a>					
+				
+				</td>
+			</tr>
 		<?php }
 if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
 ?>	

@@ -12,11 +12,11 @@ class SimpleTemplate extends Module{
 		$variable2 = date ("d/m/Y");
 		
 		$variable3 = array(
-			array('N'=>'1','M'=>'2','O'=>'3'),
-			array('N'=>'4','M'=>'5','O'=>'6'),
-			array('N'=>'7','M'=>'8','O'=>'9'),
-			array('N'=>'10','M'=>'11','O'=>'12'),
-			array('N'=>'13','M'=>'14','O'=>'15')
+			array('id'=>'01','Reference'=>'AAAA-2','Prix'=>'3'),
+			array('id'=>'04','Reference'=>'BBBB-5','Prix'=>'6'),
+			array('id'=>'07','Reference'=>'CCCC-8','Prix'=>'9'),
+			array('id'=>'10','Reference'=>'DDDD-11','Prix'=>'12'),
+			array('id'=>'13','Reference'=>'EEEE-14','Prix'=>'15')
 			
 			);
 			
@@ -36,7 +36,30 @@ class SimpleTemplate extends Module{
 			
 	}
 	
-	public function action_exemple(){
+	public function action_modifier(){
+	
+		//recupère l'id et la référence 
+		$id = $this->req->id;
+		$ref= $this->req->ref;
+		
+		//passe ces informations dans le template
+		
+		$this->tpl->assign("id",$id);
+		$this->tpl->assign("reference",$ref);		
+	
+		
+	}
+	public function action_supprimer(){
+
+		//recupère l'id et la référence 
+		$id = $this->req->id;
+		$ref= $this->req->ref;
+		
+		//passe ces informations dans le template
+		
+		$this->tpl->assign("id",$id);
+		$this->tpl->assign("reference",$ref);		
+
 		
 	}
 	
