@@ -31,7 +31,7 @@
 						<li><a id='A_{$m}' href='{$data}'>{$m}</a></li>
 					{else}
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$m} <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 							{foreach $data as $sm=>$shref}	
 								<li>
