@@ -325,12 +325,20 @@ class Form{
 							}
 						break;
 						case 'date':
+							//ne teste pas les dates vides
+							$val = trim($req->$k);
+							if(empty($val))
+								break;
 				
-							if(DateTime::createFromFormat($args,$req->$k )->getLastErrors()["warning_count"]>0){
-								$this->$k->set_error();
-								$this->$k->set_error_message('date invalide');
-								$this->hasErrors=true;							
+							if( ($dt = DateTime::createFromFormat($args,$req->$k ))!==FALSE )
+								$last_err=$dt->getLastErrors();
+
+							if(!$dt ||  $last_err["warning_count"]>0){
+									$this->$k->set_error();
+									$this->$k->set_error_message('date invalide');
+									$this->hasErrors=true;							
 							}			
+											
 						break;
 						case 'regex':
 							if(!preg_match($args,$req->$k)){

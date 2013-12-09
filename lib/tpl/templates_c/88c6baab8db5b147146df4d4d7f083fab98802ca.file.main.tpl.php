@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-12-06 19:08:33
+<?php /* Smarty version Smarty-3.1.1, created on 2013-12-09 17:45:00
          compiled from "templates/main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:179219845350b47fe94d6c94-45604315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88c6baab8db5b147146df4d4d7f083fab98802ca' => 
     array (
       0 => 'templates/main.tpl',
-      1 => 1386353312,
+      1 => 1386606202,
       2 => 'file',
     ),
   ),
@@ -78,7 +78,8 @@ $_smarty_tpl->tpl_vars['data']->_loop = true;
 </a></li>
 					<?php }else{ ?>
 						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Exemples <b class="caret"></b></a>
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><?php echo $_smarty_tpl->tpl_vars['m']->value;?>
+ <b class="caret"></b></a>
 							<ul class="dropdown-menu">
 							<?php  $_smarty_tpl->tpl_vars['shref'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['shref']->_loop = false;
  $_smarty_tpl->tpl_vars['sm'] = new Smarty_Variable;
