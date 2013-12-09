@@ -53,7 +53,7 @@ class Formulaire extends Module{
 		));
 
 		//règles de validation automatiques
-		$f->champ1->set_validation("regex:/lala:toto/");
+		$f->champ1->set_validation("equal:lala:toto");
 		$f->champ3->set_validation("regex:/pommes/");
 		$f->radio->set_validation("equal:Un");		
 		$f->pass1->set_validation("required");
