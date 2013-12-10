@@ -54,7 +54,7 @@
 		<ol class="breadcrumb">
 			<li><a href="?module">Home</a></li>
 			<li><a href="?module={$module}">{$module}</a></li>
-			<li class="active">{$action}</li>
+			<li class="active">{$titre}</li>
 		</ol>
 
 		{if $messages}
@@ -65,10 +65,7 @@
 		{/if}
 
 
-
-
 		<div id='module'>
-			<h1>{$titre}</h1>
 			{$bloc_contenu}
 		</div>			
 				{if $affichages}
