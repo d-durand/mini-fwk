@@ -14,17 +14,18 @@ class SimpleTemplate extends Module{
 		$variable3 = array(
 			array('id'=>'01','Reference'=>'AAAA-2','Prix'=>'3'),
 			array('id'=>'04','Reference'=>'BBBB-5','Prix'=>'6'),
-			array('id'=>'07','Reference'=>'CCCC-8','Prix'=>'9'),
-			array('id'=>'10','Reference'=>'DDDD-11','Prix'=>'12'),
-			array('id'=>'13','Reference'=>'EEEE-14','Prix'=>'15')
-			
 			);
+
+		$variable4 = new stdClass();
+		$variable4->attribut1="valeur 1";
+		$variable4->attribut2="valeur 2";		
 			
 		
 		//passe les variables au template		
 		$this->tpl->assign('chaine',$variable1);
 		$this->tpl->assign('date',$variable2);
 		$this->tpl->assign('table',$variable3);
+		$this->tpl->assign('objet',$variable4);		
 
 
 		//essaie d'afficher directement du contenu dans passer par le template
@@ -35,33 +36,6 @@ class SimpleTemplate extends Module{
 			echo $variablequinexistepas;
 			
 	}
-	
-	public function action_modifier(){
-	
-		//recupère l'id et la référence 
-		$id = $this->req->id;
-		$ref= $this->req->ref;
 		
-		//passe ces informations dans le template
-		
-		$this->tpl->assign("id",$id);
-		$this->tpl->assign("reference",$ref);		
-	
-		
-	}
-	public function action_supprimer(){
-
-		//recupère l'id et la référence 
-		$id = $this->req->id;
-		$ref= $this->req->ref;
-		
-		//passe ces informations dans le template
-		
-		$this->tpl->assign("id",$id);
-		$this->tpl->assign("reference",$ref);		
-
-		
-	}
-	
 }	
 ?>
