@@ -108,10 +108,15 @@ $tpl->assign("affichages",$echx);
 
 
 //--------------------------------------------------------------------------
-//affiche le template principal
+//affiche le template principal, le module seul ou le module dans une boite de dialogue
+// paramètre GET : displayModuleOnly=1
 //--------------------------------------------------------------------------
-$tpl->display('main.tpl');
-
+if($request->displayModuleOnly)
+	$tpl->display('module.tpl');
+elseif($request->displayModuleInDialog)
+	$tpl->display('modal.tpl');
+else
+	$tpl->display('main.tpl');
 
 
 //--------------------------------------------------------------------------
