@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-12-06 23:55:45
+<?php /* Smarty version Smarty-3.1.1, created on 2013-12-10 12:59:34
          compiled from "modules/SimpleTemplate/tpl/index.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:84239681250caf66f6d70c3-48194048%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'a273cb2ea3e65513a7edd17adbe8c7e758ac1063' => 
     array (
       0 => 'modules/SimpleTemplate/tpl/index.tpl',
-      1 => 1386370542,
+      1 => 1386676773,
       2 => 'file',
     ),
   ),
@@ -23,6 +23,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'date' => 0,
     'table' => 0,
     'donnees' => 0,
+    'objet' => 0,
   ),
   'has_nocache_code' => false,
 ),false); /*/%%SmartyHeaderCode%%*/?>
@@ -30,43 +31,36 @@ $_valid = $_smarty_tpl->decodeProperties(array (
 <script>
 //demande confirmation sur click d'un bouton supprimer
 $(function() {
+	//sur click d'un bouton de suppression
 	$('a.glyphicon-remove').click(function(ev){
-		var a = $(this);
-		$( "<div>Effacer " + a.attr('title') + "</div>" ).dialog({
-			resizable: false,
-			modal: true,
-			title:'Confirmation',
-			position: "center",//{ my: "top", at: " top", of: "window" },
-			buttons: {
-				Effacer: function() {
-					window.location=a.attr('href')
-					$( this ).dialog( "close" );
-				},
-				Cancel: function() {
-					
-					$( this ).dialog( "close" );
-				}
-			}
-			});
+		//récupérer le href du lien
+		//et l'utiliser pour le bouton de confirmation
+		$('#go').attr("href",$(this).attr('href'))	
+
+		//afficher la boite de dialogue
+		$('#myModal').modal();
+	
+		//supprimer le comportement par défaut du lien d'origine
 		ev.preventDefault();				
 	})
 });
 </script>
 
 
-<h2>Affichage des variables issues du module</h2>
+<h2>Affichage des variables assignées au template par le module</h2>
 
-<h3>variable1, type chaine</h3>
+<h4>variable1, type chaine</h4>
 <p><?php echo $_smarty_tpl->tpl_vars['chaine']->value;?>
 </p>
 
-<h3>var2, type chaine/date</h3>
+<h4>var2, type chaine/date</h4>
 <p><?php echo $_smarty_tpl->tpl_vars['date']->value;?>
 </p>
-<h3>variable3, tableau associatif</h3>
+<h4>variable3, tableau associatif</h4>
+
 	<table class='table table-striped'>
 		<thead>
-			<th>id</th><th>Reference</th><th>Prix</th><th>Actions</th>
+			<th>id</th><th>Reference</th><th>Prix</th>
 		</thead>
 		<tbody>
 		<?php  $_smarty_tpl->tpl_vars['donnees'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['donnees']->_loop = false;
@@ -83,21 +77,18 @@ $_smarty_tpl->tpl_vars['donnees']->_loop = true;
 </td>
 				<td><?php echo $_smarty_tpl->tpl_vars['donnees']->value['Prix'];?>
 </td>
-				<td>
-
-					<a class='glyphicon glyphicon-pencil' href='?module=SimpleTemplate&action=modifier&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['id'];?>
-&ref=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['Reference'];?>
-'></a> 
-					<a class='glyphicon glyphicon-remove' title=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['Reference'];?>
- href='?module=SimpleTemplate&action=supprimer&id=<?php echo $_smarty_tpl->tpl_vars['donnees']->value['id'];?>
-'></a>					
-				
-				</td>
 			</tr>
 		<?php }
 if (!$_smarty_tpl->tpl_vars['donnees']->_loop) {
 ?>	
-			<tr><td colspan='3'>tableau vide</td></tr>
+			<tr><td colspan='2'>Aucune donnée</td></tr>
 		<?php } ?>
 		</tbody>
-	</table><?php }} ?>
+	</table>
+	
+<h4>var4, type objet</h4>
+<p>attribut1 : <?php echo $_smarty_tpl->tpl_vars['objet']->value->attribut1;?>
+ attribut2 : <?php echo $_smarty_tpl->tpl_vars['objet']->value->attribut2;?>
+</p>
+	
+<?php }} ?>

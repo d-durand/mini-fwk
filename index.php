@@ -1,7 +1,6 @@
 <?php
 header('Content-type:text/html; charset=utf-8');
 ini_set('display_errors',1);
-
 //--------------------------------------------------------------------------
 //gestionnaire d'exception
 //--------------------------------------------------------------------------
@@ -85,13 +84,6 @@ foreach ($blocs as $b){
 //récupère les affichages "parasites" (echo, print, var_dump...)
 $echx = ob_get_clean();
 
-
-
-
-
-
-
-
 //--------------------------------------------------------------------------
 //Gestion d'erreurs
 //--------------------------------------------------------------------------
@@ -105,8 +97,6 @@ $tpl->assign("erreurs",$aff_errs);
 //affichages parasites
 $tpl->assign("affichages",$echx);
 
-
-
 //--------------------------------------------------------------------------
 //affiche le template principal, le module seul ou le module dans une boite de dialogue
 // paramètre GET : displayModuleOnly=1
@@ -117,7 +107,6 @@ elseif($request->displayModuleInDialog)
 	$tpl->display('modal.tpl');
 else
 	$tpl->display('main.tpl');
-
 
 //--------------------------------------------------------------------------
 //gestionnaire d'exceptions

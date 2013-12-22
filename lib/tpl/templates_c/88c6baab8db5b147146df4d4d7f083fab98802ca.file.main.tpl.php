@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.1, created on 2013-12-09 17:45:00
+<?php /* Smarty version Smarty-3.1.1, created on 2013-12-10 13:11:23
          compiled from "templates/main.tpl" */ ?>
 <?php /*%%SmartyHeaderCode:179219845350b47fe94d6c94-45604315%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     '88c6baab8db5b147146df4d4d7f083fab98802ca' => 
     array (
       0 => 'templates/main.tpl',
-      1 => 1386606202,
+      1 => 1386677452,
       2 => 'file',
     ),
   ),
@@ -27,7 +27,6 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'sm' => 0,
     'Bloc_Login' => 0,
     'module' => 0,
-    'action' => 0,
     'messages' => 0,
     'bloc_contenu' => 0,
     'affichages' => 0,
@@ -113,7 +112,7 @@ $_smarty_tpl->tpl_vars['shref']->_loop = true;
 			<li><a href="?module=<?php echo $_smarty_tpl->tpl_vars['module']->value;?>
 "><?php echo $_smarty_tpl->tpl_vars['module']->value;?>
 </a></li>
-			<li class="active"><?php echo $_smarty_tpl->tpl_vars['action']->value;?>
+			<li class="active"><?php echo $_smarty_tpl->tpl_vars['titre']->value;?>
 </li>
 		</ol>
 
@@ -126,11 +125,7 @@ $_smarty_tpl->tpl_vars['shref']->_loop = true;
 		<?php }?>
 
 
-
-
 		<div id='module'>
-			<h1><?php echo $_smarty_tpl->tpl_vars['titre']->value;?>
-</h1>
 			<?php echo $_smarty_tpl->tpl_vars['bloc_contenu']->value;?>
 
 		</div>			

@@ -1,14 +1,16 @@
-Exemple d'utilisation d'une action de module pour générer du contenu JSON
-<code>
+Utilisation d'une action de module pour générer du contenu JSON
+
+<div class="panel panel-default">
+<div class="panel-heading">Exemple</div>
 <pre>
 {literal}
 $(function(){
-	$('#ajax').autocomplete({source: "?module=Ajax&action=ajax"})}
-)
+	$('#ajax').autocomplete({source: "?module=Ajax&action=ajax"})
+}
 {/literal}
-
 </pre>
-</code>
+</div>
+
 
 <p>
 Tapez un nombre en lettres [un,deux,trois...]
@@ -23,5 +25,5 @@ $(function(){
 )
 {/literal}
 </script>
-<input type='text' id='ajax' />
+<input type='text' id='ajax'>
 <div style='clear:both'></div>
