@@ -9,8 +9,12 @@
 	<td><input type='checkbox' name='selec[]' value='{$l.id}'></td>
 </tr>
 
+
 {/foreach}
 </table>
+
+
+
 <input type='submit' name="do" value="Supprimer"/>
 <input type='submit' name="do" value="Bannir"/>
 <input type='submit' name="do" value="Activer"/>

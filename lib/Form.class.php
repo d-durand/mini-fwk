@@ -52,8 +52,11 @@ class Form{
 				case 'checkbox':
 					$s=$this->add_checkbox($f['name'],$f['id'],$f['label']);			
 				break;
-				case 'radio':
-					$s=$this->add_radio($f['name'],$f['id'],$f['label']);							
+				case 'file':
+					$s=$this->add_file($f['name'],$f['id'],$f['label']);			
+				break;
+				case 'radiogroup':
+					$s=$this->add_radiogroup($f['name'],$f['id'],$f['label'],isset($f['options'])? $f['options'] : null );							
 				break;
 				case 'textarea':
 					$s=$this->add_textarea($f['name'],$f['id'],$f['label']);							
@@ -65,7 +68,7 @@ class Form{
 					$s=$this->add_select($f['name'],$f['id'],$f['label'],isset($f['options'])? $f['options'] : null );
 				break;
 				case 'submit':
-					$s=$this->add_submit($f['name'],$f['id'],$f['label']);							
+					$s=$this->add_submit($f['name'],$f['id']);							
 				break;
 				
 			}
@@ -75,7 +78,7 @@ class Form{
 			if(isset($f['required']))
 				$s->set_required($f['required']);
 			if(isset($f['value']))
-				$s->set_required($f['value']);				
+				$s->set_value($f['value']);				
 			if(isset($f['validation']))
 				$s->set_validation($f['validation']);						
 		}		
@@ -350,6 +353,7 @@ class Form{
 						
 						break;
 						case 'required':
+							echo "<p>test required pour $k</p>";
 							$val = trim($req->$k);
 							if(empty($val)){
 								$this->$k->set_error();

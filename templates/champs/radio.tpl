@@ -3,8 +3,8 @@
 <div class='col-sm-6'>
 	<div class='btn-group' data-toggle='buttons'>
 	{foreach $f_options as $k=>$v}
-		<label class='btn btn-default'>
-			<input type='radio' name='{$f_name}' id='$k' value='{$v}' {if ($k==$f_value || $v==$f_value)} checked='checked'{/if}>
+		<label class='btn btn-default  {if ($k==$f_value || $v==$f_value)} active{/if}'>
+			<input type='radio' name='{$f_name}' id='{$k}' value='{$v}' {if ($k==$f_value || $v==$f_value)} checked='checked'{/if}>
 			{$v}
 		</label>
 	{/foreach}

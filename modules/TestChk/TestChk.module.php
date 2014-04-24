@@ -12,7 +12,9 @@ class TestChk extends Module{
 		array("id"=>"4","Civ"=>"M.","Nom"=>"Quatre","Actif"=>"Oui"),
 		array("id"=>"5","Civ"=>"Melle","Nom"=>"Cinq","Actif"=>"Non")
 		);
+
 		$this->tpl->assign("donnees",$tab);
+
 		
 		
 		$a = vrai() && vrai() && faux()  && faux();

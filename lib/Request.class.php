@@ -32,7 +32,15 @@ class Request{
 	
 	
 	public function __get($name){
-		return isset ($_REQUEST[$name]) ? trim($_REQUEST[$name]) : '' ;
+		
+		if(isset ($_REQUEST[$name]) ){
+			if (is_string($_REQUEST[$name]))
+				return trim($_REQUEST[$name]);
+			else
+				return $_REQUEST[$name];
+			
+		}else
+			return  '' ;
 	}
 	
 }
