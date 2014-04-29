@@ -103,8 +103,10 @@ $tpl->assign("affichages",$echx);
 //--------------------------------------------------------------------------
 if($request->displayModuleOnly)
 	$tpl->display('module.tpl');
-elseif($request->displayModuleInDialog)
+elseif($request->displayModuleInDialog){
 	$tpl->display('modal.tpl');
+	
+	}
 else
 	$tpl->display('main.tpl');
 

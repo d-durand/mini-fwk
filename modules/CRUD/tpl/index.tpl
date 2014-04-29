@@ -45,14 +45,14 @@ $(function() {
 					<!--voir le détail-->
 					<a class='glyphicon glyphicon-search' 
 						data-toggle="modal" 
-						data-target="#inclusion" 
+						data-target="#inclusionModal" 
 						href='?module=CRUD&action=detail&id={$donnees.id}&ref={$donnees.Reference}&displayModuleInDialog=1'>
 					</a> 				
 
 					<!--modifier-->
 					<a class='glyphicon glyphicon-pencil' 
 						data-toggle="modal" 
-						data-target="#inclusion"
+						data-target="#inclusionModal"
 						href='?module=CRUD&action=modifier&id={$donnees.id}&ref={$donnees.Reference}&displayModuleInDialog=1'>
 					</a>
 
@@ -95,4 +95,10 @@ $(function() {
 	
 	
 <!-- boite de dialogue inclusion-->
-<div class="modal fade" id="inclusion" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"></div>
+<div class="modal fade" id="inclusionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+	    Contenu vide remplacé par le module...
+    </div><!-- /.modal-content -->
+  </div><!-- /.modal-dialog -->
+</div>
