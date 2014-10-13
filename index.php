@@ -51,7 +51,7 @@ try{
 $request=Request::get_instance();
 
 //Stocke ces objets dans un tableau
-$config=array('db'=>$db,'tpl'=>$tpl,'session'=>$session,'req'=>$request,'site'=>$site);
+$config=array('db'=>$db,'tpl'=>$tpl,'session'=>$session,'req'=>$request,'requete'=>$request,'site'=>$site);
 
 
 //--------------------------------------------------------------------------

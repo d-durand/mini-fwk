@@ -261,30 +261,47 @@ class Form{
 		$req = Request::get_instance();
 		$this->reset_errors();
 
-		
+		//fields représente tous les champs du formulaire
+		//$k : l'attribut name 
+		//$f : un champ 
 		foreach($this->fields as $k=>$f){
+			
+			//scrute les règles de validation établies
 			if(!is_array($f) && $f->validation != ''){
-				$tab=explode('|',$f->validation);
-					
+				$tab=explode('|',$f->validation);			
 			
 			
+				//parcourt chaque règle
 				foreach($tab as $rule){
 				
-					//explore les arguments
+					//explore les arguments éventuels
 					$args = explode(':',$rule,2);
+					//récupère le type de test à mener
 					$command = $args[0];
 					$args = (count($args)==2 ? $args[1]:NULL);
 				
+				
 					switch($command){
+				
+						// $req->$k est la valeur du champ en cours envoyé par le navigateur
 						
-						
-						case 'equal':
+						case 'equals':
 							if($req->$k != $args){
 								$this->$k->set_error();
 								$this->$k->set_error_message('valeur incorrecte');
 								$this->hasErrors=true;
 							}
 						break;
+						
+						case 'equals-field':
+							if($req->$k != $req->$args){
+								$this->$k->set_error();
+								$this->$k->set_error_message('la valeur ne correspond pas');
+								$this->hasErrors=true;
+							}
+						break;
+						
+						
 						case 'min':
 							if($req->$k < $args){
 								$this->$k->set_error();
@@ -346,6 +363,7 @@ class Form{
 						case 'regex':
 							if(!preg_match($args,$req->$k)){
 								echo "<p>test de ".$req->$k." avec l'expr $args</p>";
+
 								$this->$k->set_error();
 								$this->$k->set_error_message('format invalide');
 								$this->hasErrors=true;							
@@ -353,7 +371,6 @@ class Form{
 						
 						break;
 						case 'required':
-							echo "<p>test required pour $k</p>";
 							$val = trim($req->$k);
 							if(empty($val)){
 								$this->$k->set_error();

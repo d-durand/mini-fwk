@@ -54,9 +54,12 @@ class Formulaire extends Module{
 
 		//règles de validation automatiques
 		$f->champ1->set_validation("date:d-m-Y");
-		$f->champ3->set_validation("regex:/pommes/");
-		$f->radio->set_validation("equal:Un");		
+		//$f->champ3->set_validation("regex:/pommes/");  ne fonctionne pas car teste la valeur plutôt que le texte. A corriger
+		$f->champ3->set_validation("equals:0"); 
+		$f->radio->set_validation("equals:Un");		
+
 		$f->pass1->set_validation("required");
+		$f->pass2->set_validation("equals-field:pass1");		
 		$f->ztexte->set_validation("min-length:10");		
 
 
@@ -90,14 +93,14 @@ class Formulaire extends Module{
 	
 		//dans cet exemple, on vérifie seulement si le login est vide et s'il n'existe pas dans la base
 
-		if($this->req->login == ''){
+		if($this->requete->login == ''){
 			$err=true;
 			$form->login->set_error(true);
 			$form->login->set_error_message("champ vide !");
 		}
 	
 		//Appel à la BD via objet MembreManager
-		elseif( MembreManager::chercherParLogin( $this->req->login) !== false){
+		elseif( MembreManager::chercherParLogin( $this->requete->login) !== false){
 			$form->login->set_error(true);
 			$form->login->set_error_message("login existant !");			
 			$err=true;	
@@ -106,7 +109,7 @@ class Formulaire extends Module{
 
 
 		//test upload fichier
-		$fichier=$this->req->file('pj');
+		$fichier=$this->requete->file('pj');
 		if( $fichier['size'] > 0 ){
 			echo "Fichier : <pre>";
 			print_r($fichier['name']);
@@ -137,9 +140,9 @@ class Formulaire extends Module{
 		else{
 
 			//création d'une instance de Membre
-			$m=new Membre($this->req->login,$this->req->nom,$this->req->pnom,
-						$this->req->mail,
-						$this->req->pass1
+			$m=new Membre($this->requete->login,$this->requete->nom,$this->requete->pnom,
+						$this->requete->mail,
+						$this->requete->pass1
 						);
 
 			//enregistrement (insertion) dans la base
