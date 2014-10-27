@@ -4,7 +4,7 @@ ini_set('display_errors',1);
 //--------------------------------------------------------------------------
 //gestionnaire d'exception
 //--------------------------------------------------------------------------
-//set_exception_handler('exc');
+set_exception_handler('exc');
 set_error_handler('erreur');
 $debugs = array();
 

@@ -23,4 +23,8 @@
 
   <!-- TestMembre -->
   <route name="test" url="/membre.html" module="TestMembre" action="index" />
+
+  <!-- Exemple route avec variables -->
+  <!--route name="forum_topic" url="/forum/t(\d+)-(.+)-(\d+).html" module="Forum" action="topic" vars="id,slug,page" /-->
+  <!-- Router::generate("forum_topic", array("id" => $id, "slug" => "mon-topic", "page" => $page)) -->
 </definitions>
