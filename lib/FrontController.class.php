@@ -12,16 +12,16 @@ Class FrontController{
 		foreach($config as $var=>$val)
 			$this->$var=$val;
 		$this->config=$config;
-		
+
 	}
 
 	public function load_content(){
 
 		//vérifie si un paramètre de module est passé, sinon : défaut
-		$module= ( $this->req->module != '' ) ? $this->req->module : 'index';	
+		$module= ( $this->req->module != '' ) ? $this->req->module : 'index';
 		//vérifie si une action est requise, sinon : index
-		$action= ( $this->req->action != '')   ? $this->req->action : 'index';	
-		
+		$action= ( $this->req->action != '')   ? $this->req->action : 'index';
+
 		$this->tpl->assign('titre','Titre par défaut');
 		$this->tpl->assign('module',$module);
 		$this->tpl->assign('action',$action);
@@ -50,14 +50,21 @@ Class FrontController{
 		else
 			throw new Exception("Action inconnue : $module::$action");
 
+		foreach($this->config as $var=>$val)
+			$this->tpl->assign($var,$val);
+
+		/*echo "<pre>";
+		print_r($this->tpl);
+		echo "</pre>";
+		die();*/
 
 		$res=$this->tpl->fetch("file:modules/$module/tpl/".$m->get_tpl_name().".tpl");
 		$this->tpl->assign('bloc_contenu',$res);
 		$this->tpl->assign('messages',$this->site->liste_messages());
 
-	}	
-	
-	
+	}
+
+
 
 }
 

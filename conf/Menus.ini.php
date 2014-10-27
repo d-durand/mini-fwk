@@ -1,11 +1,11 @@
 <?php
 $menus['Exemples']=array(
-	'SimpleTPL'=>"?module=SimpleTemplate",
-	'Formulaire'=>"?module=Formulaire",
-	'C.R.U.D'=>"?module=CRUD",	
-	'Redirect'=>"?module=Redirect",
-	'Download'=>"?module=DownloadFile",
-	'Ajax'=>"?module=Ajax"
+	'SimpleTPL'=>Router::generate("simpletpl"),
+	'Formulaire'=>Router::generate("formulaire"),
+	'C.R.U.D'=>Router::generate("crud"),
+	'Redirect'=>Router::generate("redirect"),
+	'Download'=>Router::generate("download"),
+	'Ajax'=>Router::generate("ajax")
 	);
-$menus['Test']="?module=TestMembre";
+$menus['Test']=Router::generate("test");
 ?>
