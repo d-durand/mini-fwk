@@ -61,6 +61,7 @@ class HTMLInput{
 	
 	public function set_validation($validation){
 		$this->validation= $validation;
+		return $this;
 	}
 	
 	public function set_error($err=true){
