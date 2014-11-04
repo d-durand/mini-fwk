@@ -84,7 +84,9 @@ class Formulaire extends Module{
 		//on récupère la structure du formulaire précédemment stocké dans la session
 		$form=$this->session->form;
 		$form->reset_errors();
-		$form->valid();
+		//effectue les tests de vérification définis par l'utlisateur
+		//si un des tests échoue : false
+		$err = $form->valid();
 		
 		
 		//faire les tests de vérification de remplissage/format des champs
