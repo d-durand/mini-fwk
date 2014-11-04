@@ -215,7 +215,7 @@ class Form{
 
 	//remet à zéro les messages et classes css d'erreur
 	function reset_errors(){
-		$this->hasError=false;
+		$this->hasErrors=false;
 		foreach($this->fields as $k=>&$f){
 
 			//cas des boutons radios
