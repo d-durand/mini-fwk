@@ -51,7 +51,7 @@ Il est constitué de quelques classes :
 <ul>
 
 	<li><b>DB</b> : wrapper PDO</li>
-	<li><b>Form</b> : formulaire HTML en objet, facilite l'écriture, la génération et le remplissage de formulaires</li>
+	<li><b>Form</b> : formulaire HTML en objet, facilite l'écriture, la génération, le pré-remplissage et la validation de formulaires</li>
 	<li><b>FrontController</b> : chargeur de modules</li>
 	<li><b>Module</b> : classe de base des modules à implémenter par les étudiants. Un <a href="#mdl">module</a> représente un "sous-programme" du site</li>
 	<li><b>Request</b> : wrapper des tableaux <code>$_GET</code>, <code>$_POST</code> et <code>$_REQUEST</code></li>
@@ -134,20 +134,9 @@ Un module Inscription =
 <ul>
 	<li><code>$this->site</code> : objet outil Site</li>
 	<li><code>$this->session</code> : objet outil Session</li>	
-	<li><code>$this->request</code> : objet outil Request</li>
+	<li><code>$this->requete</code> : objet outil Request</li>
 	<li><code>$this->tpl</code> : moteur de template</li>	
 </ul>
-
-
-
-
-
-
-
-
-
-
-
 
 <h3 id='cls'>Classes outils</h3>
 <h4>DB : wrapper PDO</h4>
@@ -166,9 +155,10 @@ Disponible dans l'ensemble du code via <code>DB::get_instance()</code>
 </div>
 
 <h4>Form</h4>
+La classe Form implémente en POO un formulaire et ses champs, tout en masquant le code HTML. Le code HTML généré est modifiable dans les templates du dossier <a href="../templates/champs">/templates/champs</a>
 <h5>Constructeur</h5>
 <ul>
-<li><code>__construct( $url_action, $id_form )</code> : contruit un formulaire dont l'action est <code>$url_action</code>
+<li><code>__construct( $url_action, $id_form )</code> : cosntruit un formulaire dont l'action est <code>$url_action</code>
 <div class='panel panel-default'>
 <div class='panel-heading'>Exemple</div>
 	<pre>
@@ -179,13 +169,15 @@ Disponible dans l'ensemble du code via <code>DB::get_instance()</code>
 </ul>
 
 <h5>Champs</h5>
+Les champs HTML4 sont supportés, les 5 viendront dans une future version.
 <p>Chacune des méthodes <code>add*</code> ajoute un élément et renvoie un objet <code>HTMLInput</code><br />
 Les objets HTMLInput peuvent définir </p>
 <ul>
 <li>une valeur par défaut : méthode <code>set_value()</code>,</li>
-<li>le fait d'être requis : méthode <code>set_required(true)</code></li>
+<li>visuellement le fait d'être requis : méthode <code>set_required(true)</code></li>
 <li>un état d'erreur : méthode <code>set_error()</code></li>
 <li>un message d'erreur associé: méthode <code>set_error_message($message)</code></li>
+<li>un ou plusieurs formats de validation à vérifier : <code>set_validation($regle)</code>, voir <a href='#checkform'>Vérification des formulaires</a></li>
 </ul>
 <h5>Méthodes</h5>
 <ul>
@@ -194,9 +186,8 @@ Les objets HTMLInput peuvent définir </p>
 <div class='panel-heading'>Exemple</div>
 <pre>
 	//ajoute une liste déroulante et sélectionne la seconde valeur
-	$f->add_select("liste","sel1","Choisissez",
-				array("1"=>"Un","2"=>"Deux","3"=>"Trois")
-			   )->set_value("Deux");
+	$f->add_select("liste","sel1","Choisissez",array("1"=>"Un","2"=>"Deux","3"=>"Trois"))
+	  ->set_value("Deux");
 </pre>
 </div>
 </li>
@@ -226,10 +217,99 @@ Les objets HTMLInput peuvent définir </p>
 </li>
 <li><code>populate($array)</code> : remplit les champs du formulaire avec les paramètres passés dans la requête HTTP ou bien dans le tableau associatif passé en paramètre. Les clés du tableau associatif correspondent aux attributs <code>name</code> des champs</li>
 <li><code>reset_errors()</code> : efface les messages d'erreurs associés aux champs de formulaire</li>
+<li><code>build_from_array()</code> : construit un formulaire à partir d'un ensemble de tableaux associatifs. Chaque champ est défini par un ensemble de propriétés. 
+<div class='panel panel-default'>
+<div class='panel-heading'>Exemple</div>
+<pre>
+	$f->build_from_array( array(
+			array(
+				"type"=>"text",
+				"name"=>"adresse",
+				"id"=>"adresse",
+				"required"=>true,
+				"label"=>"Adresse 1"			
+			),
+			//...
+			array(
+				"type"=>"password",
+				"name"=>"pass",
+				"id"=>"pass",
+				"required"=>true,
+				"label"=>"Mot de passe",
+				"validation"=>"required|min-length:8"
+			)
+			//...
+
+		)
+	);
+	</pre>
+</div>
+</li>
 </ul>
+<h5 id='checkform'>Vérification des formulaires</h5>
+La méthode <code>set_validation()</code> de chaque champ permet de préciser une ou des règles de validation génériques, parmi lesquelles :
+<ul>	
+<li><code>equals:valeur</code> test l'égalité avec une valeur</li>
+<li><code>equals-field:nomchamp</code> : test l'égalité avec un autre champ</li>
+<li><code>min:nombre</code> : teste si la valeur est supérieure à un nombre</li>
+<li><code>max:nombre</code> : teste si la valeur est inférieure à un nombre</li>
+<li><code>min-length:nombre</code> : teste si la valeur a une longueur supérieure à un nombre</li>
+<li><code>max-length:nombre</code>: teste si la valeur a une longueur inférieure à un nombre</li>
+<li><code>int</code> : teste si la valeur est un entier</li>
+<li><code>mail</code> : teste si la valeur est une adresse mail valide</li>
+<li><code>date:format</code> : teste si la valeur est une date valide, selon le format précisé (cf <a href="http://php.net/manual/fr/datetime.createfromformat.php">http://php.net/manual/fr/datetime.createfromformat.php</a>) </li>
+<li><code>regex:pattern</code> : teste si la valeur respecte une expression régulière</li>
+<li><code>required</code> : teste si le champ est rempli</li>	
+</ul>
+Les règles peuvent se combiner avec l'opérateur <code>|</code>
+<div class='panel panel-default'>
+<div class='panel-heading'>Exemples</div>
+<pre>
+	$f->add_text("identifiant","login","Identifiant")
+	  ->set_required()
+	  ->set_validation("min-length:8|required");
+</pre>
+ou dans la forme tableau : 
+<pre>
+	//...
+	array(
+		"type"=>"text",
+		"name"=>"identifiant",
+		"id"=>"login",
+		"required"=>true,
+		"label"=>"Identifiant",
+		"validation"=>"required|min-length:8"
+	)
+	//...
+</pre>
+</div>
+<div class="alert alert-warning" role="alert">
+	La méthode <code>set_required()</code> indique visuellement qu'un champ est obligatoire, mais n'a pas d'influence sur la règle de validation <code>("required")</code>.
+</div>
+
+
+La méthode <code>check()</code> de la classe Form teste chaque champ pour vérifier si la valeur saisie correspond à la ou aux règles définies. Lorsqu'un champ ne respecte pas une des règles, une classe CSS <code>has-error</code> est ajoutée, et un message d'erreur apparaît. 
+<div class='panel panel-default'>
+<div class='panel-heading'>Exemple</div>
+<pre>
+
+function action_valider(){
+
+	$f = $this->session->formulaireTest;
+	$valide = $f->check(); //true ou false
+	
+	//suite du traitement
+
+}
+
+</pre>
+</div>
+
+
+
 
 <h4>Request</h4>
-<p>wrapper des tableaux <code>$_GET</code>, <code>$_POST</code> et <code>$_REQUEST</code>. Implémente la méthode magique <code>__get()</code> pour récupérer les paramètres passés dans l'URL en get ou post de manière unique.</p>
+<p>Wrapper des tableaux <code>$_GET</code>, <code>$_POST</code> et <code>$_REQUEST</code>. Implémente la méthode magique <code>__get()</code> pour récupérer les paramètres passés dans l'URL en get ou post de manière unique.</p>
 <div class='panel panel-default'>
 <div class='panel-heading'>Exemple</div>
 <pre>
