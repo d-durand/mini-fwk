@@ -390,6 +390,7 @@ class Form{
 
 
 	//génération HTML du formulaire
+	//cf dossier templates/champs pour le code HTML
 	function __toString(){
 
 		$s="<form role='form' class='form-horizontal' method='{$this->method}' action='{$this->action}'" . ($this->hasFile ? " enctype='multipart/form-data'":'').">";
