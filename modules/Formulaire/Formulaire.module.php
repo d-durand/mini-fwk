@@ -84,28 +84,26 @@ class Formulaire extends Module{
 		//on récupère la structure du formulaire précédemment stocké dans la session
 		$form=$this->session->form;
 		$form->reset_errors();
-		//effectue les tests de vérification définis par l'utlisateur
+
+
+		//effectue les tests de vérification définis par l'utilisateur
 		//si un des tests échoue : false
-		$err = $form->valid();
-		
-		
-		//faire les tests de vérification de remplissage/format des champs
-		//... expressions régulières, etc.
+		$valide = $form->check();
 	
 	
 		//dans cet exemple, on vérifie seulement si le login est vide et s'il n'existe pas dans la base
 
 		if($this->requete->login == ''){
-			$err=true;
+			$valide=false;
 			$form->login->set_error(true);
 			$form->login->set_error_message("champ vide !");
 		}
 	
 		//Appel à la BD via objet MembreManager
 		elseif( MembreManager::chercherParLogin( $this->requete->login) !== false){
+			$valide=false;
 			$form->login->set_error(true);
 			$form->login->set_error_message("login existant !");			
-			$err=true;	
 		 }
 		
 
@@ -128,7 +126,7 @@ class Formulaire extends Module{
 
 		
 		//si un des tests a échoué
-		if($err){	
+		if( $valide==false ){	
 		
 			$this->site->ajouter_message('contrôle form : remplir les champs (uniquement login dans cet exemple)',ALERTE);			
 
