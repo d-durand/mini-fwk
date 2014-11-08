@@ -255,9 +255,9 @@ class Form{
 
 	/*
 	* Passe les tests de validation pour chacune des champs qui ont une propriété 'validation' définies
-	*	
+	* return FALSE si au moins un des champs est en erreur	
 	*/
-	public function valid(){
+	public function check(){
 		$req = Request::get_instance();
 		$this->reset_errors();
 
@@ -385,10 +385,8 @@ class Form{
 				}//foreach	
 			}//if
 		}//foreach
-		return $this->hasErrors;
+		return !$this->hasErrors;
 	}
-
-
 
 
 	//génération HTML du formulaire
