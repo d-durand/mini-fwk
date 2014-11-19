@@ -70,7 +70,9 @@ class Form{
 				case 'submit':
 					$s=$this->add_submit($f['name'],$f['id']);							
 				break;
-				
+				case 'header':
+					$s=$this->add_header($f['label']);							
+				break;				
 			}
 			
 			if(isset($f['checked']))
@@ -203,6 +205,18 @@ class Form{
 	function add_radiogroup($name,$id,$label='&nbsp;',$radios){
 		$s =  new HTMLInput(RADIO,$name,$id,$label,$radios);
 		$this->fields[$name]=$s;
+		return $s;		
+	}
+
+	/*
+	* Ajoute une en-tête
+	* paramètres : 
+	*   'label'		=> 'texte du label',
+	*/
+	function add_header($label){
+		$n=uniqid();
+		$s =  new HTMLInput(HEADER,"break-label".$n,"break-label".$n,$label);
+		$this->fields["break-label".$n]=$s;
 		return $s;		
 	}
 

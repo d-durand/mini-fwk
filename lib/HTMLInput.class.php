@@ -4,6 +4,8 @@
 * Class HTMLInput : champ de saisie pour formulaire HTML
 *
 */
+
+//champs HTML 4 Standard
 define ("TEXT","text");
 define ("TEXTAREA","textarea");
 define ("PASSWORD","password");
@@ -13,6 +15,9 @@ define ("SELECT","select");
 define ("SUBMIT","submit");					
 define ("HIDDEN","hidden");					
 define ("FILE","file");					
+
+//en-tête
+define ("HEADER","header");
 
 class HTMLInput{
 		
@@ -135,6 +140,10 @@ class HTMLInput{
 			case SUBMIT : 
 				$s=$tpl->fetch("file:templates/champs/submit.tpl");
 			break;
+			
+			case HEADER :
+				$s=$tpl->fetch("file:templates/champs/header.tpl");	
+			break;			
 
 			default: return "[CHAMP INCONNU]";			
 			
