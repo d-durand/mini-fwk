@@ -303,14 +303,14 @@ class Form{
 						
 						
 						case 'min':
-							if($req->$k < $args){
+							if($req->$k <= $args){
 								$this->$k->set_error();
 								$this->$k->set_error_message('valeur inférieure au minimum');
 								$this->hasErrors=true;
 							}
 						break;
 						case 'max':
-							if($req->$k > $args){
+							if($req->$k >= $args){
 								$this->$k->set_error();
 								$this->$k->set_error_message('valeur maximum dépassée');
 								$this->hasErrors=true;							
