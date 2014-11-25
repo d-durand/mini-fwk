@@ -3,11 +3,11 @@
 	<head>
 		<title>{$titre}</title>
 		<script src='js/jquery-1.10.2.min.js'></script>
-		<script src='js/jquery-ui-1.10.3.custom.min.js'></script>	
-		<script src='styles/bootstrap/js/bootstrap.min.js'></script>	
-		<script src='js/default.js'></script>	
+		<script src='js/jquery-ui-1.10.3.custom.min.js'></script>
+		<script src='styles/bootstrap/js/bootstrap.min.js'></script>
+		<script src='js/default.js'></script>
 		<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
-		<link rel='stylesheet' href='styles/bootstrap/css/bootstrap.min.css' />	
+		<link rel='stylesheet' href='styles/bootstrap/css/bootstrap.min.css' />
 		<link rel='stylesheet' href='styles/defaut.css' />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
@@ -22,7 +22,7 @@
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="?">MiniFWK</a>
+				<a class="navbar-brand" href="{router::generate('index')}">MiniFWK</a>
 			</div>
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
@@ -33,27 +33,27 @@
 						<li class="dropdown">
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$m} <b class="caret"></b></a>
 							<ul class="dropdown-menu">
-							{foreach $data as $sm=>$shref}	
+							{foreach $data as $sm=>$shref}
 								<li>
 								<a href='{$shref}'>{$sm}</a>
 								</li>
-							{/foreach}			        
+							{/foreach}
 							</ul>
 						</li>
 					{/if}
 				{/foreach}
-				</ul>		
-				<ul class="nav navbar-nav navbar-right">
-					<li><a href="Doc">Documentation</a></li>			
 				</ul>
-				{$Bloc_Login}			
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="Doc">Documentation</a></li>
+				</ul>
+				{$Bloc_Login}
 		</nav>
 
 
     <div class="container">
 		<ol class="breadcrumb">
-			<li><a href="?module">Home</a></li>
-			<li><a href="?module={$module}">{$module}</a></li>
+			<li><a href="{router::generate('index')}">Home</a></li>
+			<li><a href="{router::generate($req->moduleName)}">{$module}</a></li>
 			<li class="active">{$titre}</li>
 		</ol>
 
@@ -67,7 +67,7 @@
 
 		<div id='module'>
 			{$bloc_contenu}
-		</div>			
+		</div>
 				{if $affichages}
 			<div class='alert alert-info'>
 				<h4>Affichages divers</h4>
@@ -78,7 +78,7 @@
 			{/if}
 			{if $erreurs}
 			<div class='alert alert-warning'>
-				<h4>Erreurs diverses</h4>			
+				<h4>Erreurs diverses</h4>
 				<p>
 				{$erreurs}
 				</p>
@@ -86,6 +86,6 @@
 			{/if}
 	</div>
 	</body>
-		
+
 </html>
 <!-- end template-->

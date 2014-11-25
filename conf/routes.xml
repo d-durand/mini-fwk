@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+<definitions>
+  <!-- Index -->
+  <route name="index" url="/" module="Index" action="index" />
+
+  <!-- SimpleTemplate -->
+  <route name="simpletpl" url="/simpletpl.html" module="SimpleTemplate" action="index" />
+
+  <!-- Formulaire -->
+  <route name="formulaire" url="/formulaire.html" module="Formulaire" action="index" />
+
+  <!-- C.R.U.D. -->
+  <route name="crud" url="/crud.html" module="CRUD" action="index" />
+
+  <!-- Redirect -->
+  <route name="redirect" url="/redirect.html" module="Redirect" action="index" />
+
+  <!-- DownloadFile -->
+  <route name="download" url="/download.html" module="DownloadFile" action="index" />
+
+  <!-- Ajax -->
+  <route name="ajax" url="/ajax.html" module="Ajax" action="index" />
+
+  <!-- TestMembre -->
+  <route name="test" url="/membre.html" module="TestMembre" action="index" />
+
+  <!-- Exemple route avec variables -->
+  <!--route name="forum_topic" url="/forum/t(\d+)-(.+)-(\d+).html" module="Forum" action="topic" vars="id,slug,page" /-->
+  <!-- Router::generate("forum_topic", array("id" => $id, "slug" => "mon-topic", "page" => $page)) -->
+</definitions>

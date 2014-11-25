@@ -17,6 +17,7 @@ ob_start();
 //paramètres et chargeur de classes
 //--------------------------------------------------------------------------
 require_once("conf/Params.ini.php");
+require_once("conf/Functions.ini.php");
 require_once("lib/Autoload.php");
 
 //--------------------------------------------------------------------------
@@ -43,15 +44,42 @@ try{
 	$db=DB::get_instance();
 }catch(Exception $e){
 	$site->ajouter_message("Impossible de se connecter sur la base de données ".DB_HOST."/".BASE,ALERTE);
-	$site->ajouter_message("Editer les paramètres du fichier <b>conf/Params.ini.php</b>",ALERTE);	
+	$site->ajouter_message("Editer les paramètres du fichier <b>conf/Params.ini.php</b>",ALERTE);
 	$db=null;
 }
 
 //Objet Requete
 $request=Request::get_instance();
 
+// Objet Router
+$router = Router::get_instance();
+
+$xml = new \DOMDocument;
+$xml->load(__DIR__ . '/conf/routes.xml');
+
+$routes = $xml->getElementsByTagName('route');
+
+// On parcourt les routes du fichier XML.
+foreach ($routes as $route) {
+  $vars = array();
+
+  // On regarde si des variables sont présentes dans l'URL.
+  if ($route->hasAttribute('vars')) {
+    $vars = explode(',', $route->getAttribute('vars'));
+  }
+
+  // On ajoute la route au routeur.
+  $router::addRoute(new Route($route->getAttribute('name'), $route->getAttribute('url'), $route->getAttribute('module'), $route->getAttribute('action'), $vars));
+}
+
+// On récupère la route correspondante à l'URL.
+$matchedRoute = $router::getRoute($_SERVER['REQUEST_URI']);
+
+// On ajoute les variables de l'URL au tableau $_GET.
+$_REQUEST = array_merge($_REQUEST, $matchedRoute->getVars());
+
 //Stocke ces objets dans un tableau
-$config=array('db'=>$db,'tpl'=>$tpl,'session'=>$session,'req'=>$request,'requete'=>$request,'site'=>$site);
+$config=array('db'=>$db,'tpl'=>$tpl,'session'=>$session,'req'=>$request,'requete'=>$request,'site'=>$site,'router'=>$router);
 
 
 //--------------------------------------------------------------------------
@@ -105,7 +133,7 @@ if($request->displayModuleOnly)
 	$tpl->display('module.tpl');
 elseif($request->displayModuleInDialog){
 	$tpl->display('modal.tpl');
-	
+
 	}
 else
 	$tpl->display('main.tpl');
