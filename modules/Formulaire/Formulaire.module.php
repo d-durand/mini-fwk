@@ -17,15 +17,21 @@ class Formulaire extends Module{
 			$f->add_text("mail","mail","M@il");		
 			$f->add_password("pass1","pass1","Password");		
 			$f->add_password("pass2","pass2","retapez...");		
+			$f->add_header("Séparation");			
 			$f->add_checkbox("chek1","ck1","Checkbox")->set_value("on");		
 			$f->add_radiogroup("radio","rad1", "RadioGroup",array("o1"=>"Un","o2"=>"Deux","o3"=>"Trois"))->set_value("Deux");		
 			$f->add_textarea("ztexte","ztexte","Zone de Texte");
 			$f->add_select("choix","choix","Liste déroulante",array("v1"=>"Un","v2"=>"Deux","v3"=>"Trois"))->set_value("Deux");		
 			$f->add_file("pj","pj","Fichier");
+			
 
 		//construction sous forme de tableau
 		//chaque champ est déclaré sous la forme d'un tableau de paramètres
 		$f->build_from_array(array(
+			array(
+					'type'=>'header',
+					'label'=>'Séparation'
+			),
 			array(
 					'type'=>'text',
 					'name'=>'champ1',
