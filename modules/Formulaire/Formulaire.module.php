@@ -14,7 +14,7 @@ class Formulaire extends Module{
 		$f=new Form("?module=Formulaire&action=valide","form1");
 			$f->add_text("login","login","Login")->set_required();		
 			$f->add_text("texte","texte","Texte");		
-			$f->add_text("mail","mail","M@il");		
+			$f->add_text("mail","mail","M@il")->set_validation('mail');		
 			$f->add_password("pass1","pass1","Password");		
 			$f->add_password("pass2","pass2","retapez...");		
 			$f->add_header("Séparation");			
