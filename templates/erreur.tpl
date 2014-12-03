@@ -1,39 +1,91 @@
 <!-- start template-->
 <html>
 	<head>
-	<title>{$titre}</title>
-	
-	<link rel='stylesheet' href='styles/defaut.css' />
-	<link rel='stylesheet' href='styles/smoothness/jquery-ui-1.8.5.custom.css' />
-
+		<title>{$titre}</title>
+		<script src='js/jquery-1.10.2.min.js'></script>
+		<script src='js/jquery-ui-1.10.3.custom.min.js'></script>	
+		<script src='styles/bootstrap/js/bootstrap.min.js'></script>	
+		<script src='js/default.js'></script>	
+		<link rel='stylesheet' href='styles/ui-lightness/jquery-ui-1.10.3.custom.min.css' />
+		<link rel='stylesheet' href='styles/bootstrap/css/bootstrap.min.css' />	
+		<link rel='stylesheet' href='styles/defaut.css' />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	</head>
 	<body>
-	<div id='page'>
-		<div id='login' title='voir le code du module Modules/Login'>Bloc login fictif &darr;
-			{$Bloc_Login}
-		</div>
 
-		<div id='entete'>
-		<a href='?module=index'>Mini-FWK</a>
-		</div>
-	
-		<div id='menu'>
-			<a href='?' title='contenu'>Defaut</a> Exemples &rarr; 
-			{foreach $menus as $m=>$href}
-			<a href='{$href}'>{$m}</a>
-			{/foreach}
-		</div>
-	
-	<div class='echo' style='background:#FFF9C4;border:5px red dotted;margin-top:20px'>
-			<h1>Erreur</h1>
-			
-			{$message|default:"Le site a rencontré un problème."}
+
+		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="?">MiniFWK</a>
 			</div>
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+				{foreach $menus as $m=>$data}
+					{if !is_array($data)}
+						<li><a id='A_{$m}' href='{$data}'>{$m}</a></li>
+					{else}
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown">{$m} <b class="caret"></b></a>
+							<ul class="dropdown-menu">
+							{foreach $data as $sm=>$shref}	
+								<li>
+								<a href='{$shref}'>{$sm}</a>
+								</li>
+							{/foreach}			        
+							</ul>
+						</li>
+					{/if}
+				{/foreach}
+				</ul>		
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="Doc">Documentation</a></li>			
+				</ul>
+				{$Bloc_Login}			
+		</nav>
 
 
-			
-			
-		</div>
+    <div class="container">
+		<ol class="breadcrumb">
+			<li><a href="?module">Home</a></li>
+		</ol>
+
+		{if $messages}
+			<div class="bs-callout bs-callout-danger">
+				<h4>Zone de messages transmis par <code>Site::ajouter_message():</code></h4>
+				{$messages}
+			</div>
+		{/if}
+				<div class="alert-danger alert">
+					<big>
+					{$message|default:"Le site a rencontré un problème."}
+					</big>
+
+				</div>			
+				{if $affichages}
+
+
+
+			<div class='alert alert-info'>
+				<h4>Affichages divers</h4>
+				<p>
+				{$affichages}
+				</p>
+			</div>
+			{/if}
+			{if $erreurs}
+			<div class='alert alert-warning'>
+				<h4>Erreurs diverses</h4>			
+				<p>
+				{$erreurs}
+				</p>
+			</div>
+			{/if}
 	</div>
 	</body>
 		
