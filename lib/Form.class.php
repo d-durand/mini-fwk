@@ -214,9 +214,9 @@ class Form{
 	*   'label'		=> 'texte du label',
 	*/
 	function add_header($label){
-		$n=uniqid();
-		$s =  new HTMLInput(HEADER,"break-label".$n,"break-label".$n,$label);
-		$this->fields["break-label".$n]=$s;
+		$n=uniqid("break-label",true);
+		$s =  new HTMLInput(HEADER,$n,$n,$label);
+		$this->fields[$n]=$s;
 		return $s;		
 	}
 
