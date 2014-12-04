@@ -12,6 +12,8 @@ class Formulaire extends Module{
 		//construction d'un formulaire manuellement
 		//chaque champ est ajouté par appel de fonction
 		$f=new Form("?module=Formulaire&action=valide","form1");
+			$f->add_header("Formulaire");
+		
 			$f->add_text("login","login","Login")->set_required();		
 			$f->add_text("texte","texte","Texte");		
 			$f->add_text("mail","mail","M@il")->set_validation('mail');		
