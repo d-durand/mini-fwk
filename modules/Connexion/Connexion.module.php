@@ -37,7 +37,7 @@ class Connexion extends Module{
 			
 			
 		}else{
-			$this->site->ajouter_message("Identifiants incorrects. Essayez Admin:admin");
+			$this->site->ajouter_message("Identifiants incorrects. Essayez Admin:admin",ALERTE);
 			$this->site->ajouter_message("Le code réel de connexion doit être modifié dans modules/Connexion");
 			
 		}
