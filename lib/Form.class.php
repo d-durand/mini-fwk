@@ -412,7 +412,7 @@ class Form{
 		foreach($this->fields as $k=>$f){
 				$s=$s.$f;
 		}
-		$s.="</div></form>";
+		$s.="</form>";
 					
 		return $s;
 
