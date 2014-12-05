@@ -9,6 +9,8 @@ function __autoload_my_classes($name) {
     	require_once("lib/$name.class.php");
     else if(file_exists("blocs/$name.bloc.php"))
     	require_once("blocs/$name.bloc.php");
+    else
+    	throw new Exception("Impossible de charger la classe <b>$classname</b>");
 }
 
 spl_autoload_register('__autoload_my_classes');
