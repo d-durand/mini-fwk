@@ -27,7 +27,7 @@ Class FrontController{
 		$this->tpl->assign('action',$action);
 
 		//inclue le module en question
-		if(!class_exists($module))
+		if(!class_exists($module,false))
 			if(file_exists("modules/$module/$module.module.php"))
 				require("modules/$module/$module.module.php");
 			else
