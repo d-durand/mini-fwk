@@ -13,11 +13,6 @@ $debugs = array();
 //--------------------------------------------------------------------------
 ob_start();
 
-//--------------------------------------------------------------------------
-//paramètres et chargeur de classes
-//--------------------------------------------------------------------------
-require_once("conf/Params.ini.php");
-require_once("lib/Autoload.php");
 
 //--------------------------------------------------------------------------
 //classes outils
@@ -30,6 +25,14 @@ $tpl->template_dir = 'templates/';
 $tpl->compile_dir = 'lib/tpl/templates_c/';
 $tpl->config_dir = 'lib/tpl/configs/';
 $tpl->cache_dir = 'lib/tpl/cache/';
+
+
+//--------------------------------------------------------------------------
+//paramètres et chargeur de classes
+//--------------------------------------------------------------------------
+require_once("conf/Params.ini.php");
+require_once("lib/Autoload.php");
+
 
 
 //Objet Session
